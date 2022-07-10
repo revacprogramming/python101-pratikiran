@@ -1,4 +1,8 @@
 # Using Web Services
 # https://www.py4e.com/lessons/servces
 
-print('Hello World')
+class roopa:
+    def __init__(self):
+        print('Goal of Science')
+
+x = roopa()
