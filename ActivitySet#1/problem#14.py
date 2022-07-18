@@ -1,31 +1,30 @@
 # Using Web Services
 # https://www.py4e.com/lessons/servces
 
-class ceaser:
-    def __init__(self, shift, text):
-        self.shift = int(shift)
-        self.text = text
-    
-    def encrypt(self):
-        d = ''
-        for i in self.text:
-            if (i == ' '):
-                d += ' '
-            else:
-                d += (chr(ord(i) + self.shift))
-        return d
+# XML And Tree
+import urllib.request, urllib.parse, urllib.error
+import xml.etree.ElementTree as ET
 
-    def decrypt(self):
-        d = ''
-        for i in self.text:
-            if (i == ' '):
-                d += ' '
-            else:
-                d += (chr(ord(i) - self.shift))
-        return d
+URL = 'http://py4e-data.dr-chuck.net/comments_1548413.xml'
 
-text = 'What do you want to encrypt'
-a = ceaser(3, text)
-print(a.encrypt())
-a.text ='Zkdw gr |rx zdqw wr hqfu|sw'
-print(a.decrypt())
+fhand = urllib.request.urlopen(URL)
+
+xml_data =''''''
+
+for line in fhand:
+  xml_data += line.decode().strip() + '\n'
+
+tree = ET.fromstring(xml_data)
+
+comments = tree.findall('comments/comment')
+
+sum = 0
+
+for comment in comments:
+  count = int(comment.find('count').text)
+  sum += count
+
+print(sum)
+
+
+# JSON
